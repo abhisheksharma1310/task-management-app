@@ -1,4 +1,4 @@
-import CreateTask from '@/components/createTask';
+import CreateTask from '@/components/CreateTaskButton';
 
 export default function Home() {
   return (

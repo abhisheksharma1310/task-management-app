@@ -1,10 +1,10 @@
 import TaskEditor from '@/components/TaskEditor'
 import React from 'react'
 
-const Task = () => {
+const page = () => {
   return (
-    <TaskEditor edit={false}/>
+    <TaskEditor edit={true}/>
   )
 }
 
-export default Task
+export default page
