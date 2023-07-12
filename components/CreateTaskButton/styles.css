@@ -3,10 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-    .new-task-button {
-        @apply flex flex-col justify-center items-center w-72 h-24 border-2 border-dashed border-blue-700 cursor-pointer hover:bg-blue-700 hover:border-solid;
-    }
+  .new-task-button {
+    @apply flex flex-col justify-center items-center w-72 h-24 border-2 border-dashed border-blue-700 cursor-pointer hover:bg-blue-700 hover:border-solid;
+  }
 }
-
-
-

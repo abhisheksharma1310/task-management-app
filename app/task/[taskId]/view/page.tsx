@@ -1,8 +1,11 @@
+import ViewTask from '@/components/ViewTask'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>View Page</div>
+    <>
+      <ViewTask/>
+    </>
   )
 }
 

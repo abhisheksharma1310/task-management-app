@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 import "./styles.css";
 
 type taskEditorProp = {
-  edit: boolean
+  edit: boolean;
 };
 
 const statusValue = ["To Do", "In Progress", "Completed"];
 
-const TaskEditor = ({edit = false}: taskEditorProp) => {
+const TaskEditor = ({ edit = false }: taskEditorProp) => {
   const [task, setTask] = useState({
     title: "",
     description: "",
@@ -36,8 +37,11 @@ const TaskEditor = ({edit = false}: taskEditorProp) => {
   return (
     <>
       <form className="task-edit-area" onSubmit={addNewTask} method="post">
+        <header>
+          <h1>{edit ? "Edit task" : "Create new task"}</h1>
+        </header>
         <fieldset className="task-field">
-          <legend>{edit ? "Edit task" : "Create new task"}</legend>
+          <legend></legend>
           <input
             type="text"
             id="title"
@@ -82,6 +86,11 @@ const TaskEditor = ({edit = false}: taskEditorProp) => {
           </select>
         </fieldset>
         <div className="task-edit-button-container">
+          <Link href="/">
+            <button className="task-edit-button" type="button">
+              Go to task list
+            </button>
+          </Link>
           <button className="task-edit-button" type="submit">
             {edit ? "Update the task" : "Create new task"}
           </button>

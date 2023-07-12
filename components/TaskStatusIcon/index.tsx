@@ -6,6 +6,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import "./styles.css";
+
 const statusValue = ["To Do", "In Progress", "Completed"];
 
 const TaskStatusIcon = ({ status }: { status: String }) => {
