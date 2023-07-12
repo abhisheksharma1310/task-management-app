@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+import "./styles.css";
+
 type taskEditorProp = {
   edit: boolean
 };
@@ -33,8 +35,8 @@ const TaskEditor = ({edit = false}: taskEditorProp) => {
 
   return (
     <>
-      <form className="flex flex-col justify-center items-center p-10" onSubmit={addNewTask} method="post">
-        <fieldset className="flex flex-col border border-solid border-blue-700 p-4 w-3/4 h-3/4 gap-4">
+      <form className="task-edit-area" onSubmit={addNewTask} method="post">
+        <fieldset className="task-field">
           <legend>{edit ? "Edit task" : "Create new task"}</legend>
           <input
             type="text"
@@ -79,8 +81,8 @@ const TaskEditor = ({edit = false}: taskEditorProp) => {
             })}
           </select>
         </fieldset>
-        <div className="flex justify-end items-end py-4 w-3/4">
-          <button className="hover:bg-blue-700 cursor-pointer border border-solid border-blue-700 p-4" type="submit">
+        <div className="task-edit-button-container">
+          <button className="task-edit-button" type="submit">
             {edit ? "Update the task" : "Create new task"}
           </button>
         </div>

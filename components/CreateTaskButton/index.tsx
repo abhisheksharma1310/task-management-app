@@ -1,10 +1,12 @@
 "use client"
 
-import Link from 'next/link'
+import Link from 'next/link';
+
+import './styles.css';
 
 const CreateTask = () => {
   return (
-    <Link href="/task" className="flex flex-col justify-center items-center w-72 h-24 border-2 border-dashed border-blue-700 cursor-pointer">
+    <Link href="/task" className="new-task-button">
       <p className="text-xl">+</p>
       <p>Create new task</p>
     </Link>
