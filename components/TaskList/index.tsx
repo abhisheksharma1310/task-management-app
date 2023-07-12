@@ -11,21 +11,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 
 import "./styles.css";
+import TaskStatusIcon from "../TaskStatusIcon";
 
 //<FontAwesomeIcon icon={faEllipsisVertical} />
 
 const statusValue = ["To Do", "In Progress", "Completed"];
 
 const TaskList = () => {
-  const TaskStatusIcon = ({ status }: { status: String }) => {
-    if (status == statusValue[0])
-      return <FontAwesomeIcon icon={faClipboardList} className="icon" />;
-    if (status == statusValue[1])
-      return <FontAwesomeIcon icon={faListCheck} className="icon" />;
-    if (status == statusValue[2])
-      return <FontAwesomeIcon icon={faClipboardCheck} className="icon" />;
-  };
-
   return (
     <div className="list">
       <div className="item">
@@ -46,16 +38,10 @@ const TaskList = () => {
           </Link>
 
           <Link href="/task/34/edit">
-            <FontAwesomeIcon
-              icon={faPenToSquare}
-              className="icon"
-            />
+            <FontAwesomeIcon icon={faPenToSquare} className="icon" />
           </Link>
 
-          <FontAwesomeIcon
-            icon={faTrashCan}
-            className="icon"
-          />
+          <FontAwesomeIcon icon={faTrashCan} className="icon" />
         </div>
       </div>
     </div>
