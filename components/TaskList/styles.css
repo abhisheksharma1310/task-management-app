@@ -11,18 +11,30 @@
     @apply flex justify-between items-center p-4 border-b-2 border-solid border-blue-700;
   }
   .item-icon {
-    @apply flex justify-center items-center;
+    @apply flex justify-start items-center mx-2;
     width: 5%;
   }
   .item-detail {
-    @apply flex flex-col justify-between items-start;
+    @apply flex flex-col justify-between items-start mx-2;
     width: 75%;
   }
   .item-control {
-    @apply flex justify-evenly items-center;
+    @apply flex justify-evenly items-center gap-4;
     width: 20%;
   }
   .icon {
     @apply w-8 h-8 cursor-pointer;
+  }
+  .icon-m {
+    display: none;
+  }
+  @media (max-width: 640px) {
+    .icon {
+      display: none;
+    }
+    .icon-m {
+      @apply w-8 h-8 cursor-pointer;
+      display: block;
+    }
   }
 }

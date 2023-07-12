@@ -1,8 +1,6 @@
 import React from "react";
 import {
-  faClipboardList,
-  faClipboardCheck,
-  faListCheck,
+  faEllipsisVertical,
   faEye,
   faTrashCan,
   faPenToSquare,
@@ -12,8 +10,6 @@ import Link from "next/link";
 
 import "./styles.css";
 import TaskStatusIcon from "../TaskStatusIcon";
-
-//<FontAwesomeIcon icon={faEllipsisVertical} />
 
 const statusValue = ["To Do", "In Progress", "Completed"];
 
@@ -42,6 +38,8 @@ const TaskList = () => {
           </Link>
 
           <FontAwesomeIcon icon={faTrashCan} className="icon" />
+
+          <FontAwesomeIcon icon={faEllipsisVertical} className="icon-m"/>
         </div>
       </div>
     </div>
