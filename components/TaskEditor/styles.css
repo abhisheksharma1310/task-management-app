@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .task-edit-area {
+    @apply flex flex-col justify-center items-center p-10 gap-4;
+  }
+  .task-field {
+    @apply flex flex-col border border-solid border-blue-700 p-4 h-3/4 gap-4;
+    width: 90%;
+    min-height: content;
+    max-height: 70vh;
+  }
+  .task-edit-button-container {
+    @apply flex justify-between items-center py-4;
+    width: 90%;
+  }
+  .task-edit-button {
+    @apply hover:bg-blue-700 cursor-pointer border border-solid border-blue-700 p-4;
+  }
+}

@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .task-view {
+    @apply flex flex-col justify-center items-center gap-4 p-10;
+  }
+  .task-details {
+    @apply flex flex-col justify-between items-start gap-2 p-4 border-2 border-solid border-blue-700;
+    width: 90%;
+    min-height: content;
+    max-height: 70vh;
+  }
+  .task-button-container {
+    @apply flex justify-between items-center py-4;
+    width: 90%;
+  }
+  .task-buttons {
+    @apply hover:bg-blue-700 cursor-pointer border border-solid border-blue-700 p-4;
+  }
+}
