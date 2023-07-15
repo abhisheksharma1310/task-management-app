@@ -1,6 +1,6 @@
 
 
-import { types } from 'mobx-state-tree';
+import { types, applySnapshot } from 'mobx-state-tree';
 import TaskModel from './Task';
 
 // Define the Task interface
@@ -31,7 +31,7 @@ const TaskListModel = types
         updateTask(updatedTask: ITask) {
             const index = self.tasks.findIndex((task) => task.id === updatedTask.id);
             if (index !== -1) {
-                self.tasks[index] = updatedTask;
+                applySnapshot(self.tasks[index], updatedTask);
             }
             saveToLocalStorage(self);
         },
