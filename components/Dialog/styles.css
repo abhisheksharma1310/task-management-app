@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .menu-icon {
+    @apply mt-3 w-10 justify-center items-center px-3 py-2 h-8 cursor-pointer text-gray-900;
+    height: 7vh;
+    overflow: auto;
+  }
+}

@@ -1,21 +1,26 @@
 import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { TaskStoreContext } from "@/models/TaskStore";
+import {
+  faArrowLeft,
+  faEye,
+  faTrashCan,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import DeleteDialog from "@/components/Dialog/DeleteDialog";
+
+import "./styles.css";
 
 type propsType = {
   open: Boolean;
-  id: String;
+  id: string;
   setOpen: Function;
 };
 
 export default function Example({ open, setOpen, id }: propsType) {
-  const taskList = useContext(TaskStoreContext);
-
-  const removeTask = () => {
-    taskList?.removeTask(id);
-    setOpen(false);
-  };
+  const [openDelete, setOpenDelete] = useState(false);
 
   const cancelButtonRef = useRef(null);
 
@@ -64,33 +69,48 @@ export default function Example({ open, setOpen, id }: propsType) {
                         as="h3"
                         className="text-base font-semibold leading-6 text-gray-900"
                       >
-                        Delete Task
+                        Task Action
                       </Dialog.Title>
                       <div className="mt-2">
                         <p className="text-sm text-gray-500">
-                          Are you sure you want to delete this task?
+                          Click on icon to perform action on this selected task.
                         </p>
-                        <p>This action cannot be undone.</p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button
-                    type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                    onClick={removeTask}
-                  >
-                    Delete Task
-                  </button>
-                  <button
-                    type="button"
-                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                  <FontAwesomeIcon
+                    icon={faArrowLeft}
+                    className="menu-icon"
                     onClick={() => setOpen(false)}
-                    ref={cancelButtonRef}
-                  >
-                    Cancel
-                  </button>
+                  />
+                  <Link href={`/task/${id}/view`}>
+                    <FontAwesomeIcon
+                      icon={faEye}
+                      className="menu-icon"
+                      onClick={() => setOpen(false)}
+                    />
+                  </Link>
+                  <Link href={`/task/${id}/edit`}>
+                    <FontAwesomeIcon
+                      icon={faPenToSquare}
+                      className="menu-icon"
+                      onClick={() => setOpen(false)}
+                    />
+                  </Link>
+                  <FontAwesomeIcon
+                    icon={faTrashCan}
+                    className="menu-icon"
+                    onClick={() => setOpenDelete(true)}
+                  />
+                  {open && (
+                    <DeleteDialog
+                      open={openDelete}
+                      setOpen={setOpenDelete}
+                      id={id}
+                    />
+                  )}
                 </div>
               </Dialog.Panel>
             </Transition.Child>

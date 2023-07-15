@@ -10,9 +10,7 @@
   }
   .item {
     @apply flex justify-between items-center p-4 border-b-2 border-solid border-blue-700;
-  }
-  .item h1 {
-    @apply sticky top-0 z-40;
+    overflow: auto;
   }
   .item-icon {
     @apply flex justify-start items-center mx-2;

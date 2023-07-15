@@ -126,13 +126,17 @@ const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
               Go to task list
             </button>
           </Link>
-          {success && 
-            <h3>{edit ? "Task updated successfully. Go to home." : "Task created successfully. Go to home."}</h3>
-          }
           <button className="task-edit-button" type="submit">
             {edit ? "Update the task" : "Create new task"}
           </button>
         </div>
+        {success && (
+          <h3 className="flex justify-center items-center" >
+            {edit
+              ? "Task updated successfully. Go to home."
+              : "Task created successfully. Go to home."}
+          </h3>
+        )}
       </form>
     </>
   );
