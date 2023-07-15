@@ -1,4 +1,6 @@
-import React from "react";
+"use client"
+
+import React, {useContext} from "react";
 import {
   faEllipsisVertical,
   faEye,
@@ -7,43 +9,54 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import { observer } from 'mobx-react';
+import { TaskStoreContext } from '@/models/TaskStore';
 
 import "./styles.css";
 import TaskStatusIcon from "../TaskStatusIcon";
 
-const statusValue = ["To Do", "In Progress", "Completed"];
-
 const TaskList = () => {
+
+  const taskList = useContext(TaskStoreContext);
+
+  const removeTask = (id: string) => {
+    taskList?.removeTask(id);
+  }
+
   return (
-    <div className="list">
+    <div className="list" suppressHydrationWarning={true}>
       <div className="item">
         <h1>Task List</h1>
       </div>
-      <div className="item hover:bg-blue-500">
-        <div className="item-icon">
-          <TaskStatusIcon status="To Do" />
-        </div>
-        <div className="item-detail">
-          <p>Title</p>
-          <p>Description</p>
-          <p>Status</p>
-        </div>
-        <div className="item-control">
-          <Link href="/task/34/view">
-            <FontAwesomeIcon icon={faEye} className="icon" />
-          </Link>
-
-          <Link href="/task/34/edit">
-            <FontAwesomeIcon icon={faPenToSquare} className="icon" />
-          </Link>
-
-          <FontAwesomeIcon icon={faTrashCan} className="icon" />
-
-          <FontAwesomeIcon icon={faEllipsisVertical} className="icon-m"/>
-        </div>
-      </div>
+      {taskList?.tasks == undefined && <h2>No task found. Add new one.</h2>}
+      {taskList?.tasks?.map((task) => {
+        return <TaskItem key={task?.id} task={task} removeTask={removeTask}/>
+      })}
     </div>
   );
 };
 
-export default TaskList;
+const TaskItem = ({task, removeTask}: any) => {
+  return <div className="item hover:bg-blue-500">
+  <div className="item-icon">
+    <TaskStatusIcon status="To Do" />
+  </div>
+  <div className="item-detail">
+    <p>{task?.title}</p>
+    <p>{task?.description}</p>
+    <p>{task?.status}</p>
+  </div>
+  <div className="item-control">
+    <Link href={`/task/${task?.id}/view`}>
+      <FontAwesomeIcon icon={faEye} className="icon" />
+    </Link>
+    <Link href={`/task/${task?.id}/edit`}>
+      <FontAwesomeIcon icon={faPenToSquare} className="icon" />
+    </Link>
+    <FontAwesomeIcon icon={faTrashCan} className="icon" onClick={() => removeTask(task?.id)}/>
+    <FontAwesomeIcon icon={faEllipsisVertical} className="icon-m"/>
+  </div>
+</div>
+};
+
+export default observer(TaskList);

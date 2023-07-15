@@ -1,22 +1,44 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
+import { v4 as uuidv4 } from 'uuid';
 
 import "./styles.css";
+import { TaskStoreContext } from '@/models/TaskStore';
+
+// Define the Task interface
+interface ITask {
+  title: string;
+  description: string;
+  status: string;
+  id: string;
+}
 
 type taskEditorProp = {
   edit: boolean;
+  id: string;
 };
 
 const statusValue = ["To Do", "In Progress", "Completed"];
 
-const TaskEditor = ({ edit = false }: taskEditorProp) => {
-  const [task, setTask] = useState({
+const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
+
+  const taskList = useContext(TaskStoreContext);
+
+  const [task, setTask] = useState<ITask>({
     title: "",
     description: "",
     status: statusValue[0],
+    id: uuidv4(),
   });
+
+  useEffect(() => {
+    if(edit && id?.length > 10){
+      const {...editTask} = taskList?.getTaskById(id);
+      setTask(editTask);
+    }
+  }, [id, edit, taskList]);
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -26,17 +48,20 @@ const TaskEditor = ({ edit = false }: taskEditorProp) => {
         [name]: value,
       };
     });
-    console.log(task);
   };
 
-  const addNewTask = (e: any) => {
+  const handleTaskSubmit = (e: any) => {
     e.preventDefault();
-    console.log(task);
+    if(edit){
+      taskList?.updateTask(task);
+    } else {
+      taskList?.addTask(task);
+    }
   };
 
   return (
     <>
-      <form className="task-edit-area" onSubmit={addNewTask} method="post">
+      <form className="task-edit-area" onSubmit={handleTaskSubmit} method="post">
         <header>
           <h1>{edit ? "Edit task" : "Create new task"}</h1>
         </header>
@@ -53,6 +78,7 @@ const TaskEditor = ({ edit = false }: taskEditorProp) => {
             minLength={3}
             title="A brief title describing the task"
             className="bg-black border-0 outline-0"
+            autoFocus
           />
           <textarea
             name="description"
