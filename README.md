@@ -1,34 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+# Task Management Application
+
+The Task Management Application is a web application built with Next.js, TypeScript, MobX State Tree (MST), and Tailwind CSS. It allows users to manage their tasks by creating, viewing, updating, and deleting tasks.
+
+## Features
+
+- View a list of tasks.
+- View individual task details.
+- Add a new task.
+- Edit an existing task.
+- Delete a task.
+
+## Technology Stack
+
+- Next.js: Framework for building the application.
+- TypeScript: Codebase written in TypeScript for type safety and maintainability.
+- MobX State Tree (MST): State management solution for managing the task data.
+- Tailwind CSS: Utilized for styling and layout purposes.
+- Git: Version control system for tracking changes.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- Node.js: Ensure that Node.js is installed on your machine.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   git clone https://github.com/abhisheksharma1310/task-management-app.git
+   ```
 
-## Learn More
+2. Change into the project directory:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   cd task-management-app
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Install the dependencies:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```bash
+   npm install
+   ```
 
-## Deploy on Vercel
+### Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Start the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   npm run dev
+   ```
+
+2. Open your browser and visit `http://localhost:3000` to access the Task Management Application.
+
+### Project Structure
+
+The project follows a modular and maintainable structure, with the following main directories:
+
+- `pages`: Contains the Next.js pages for routing and rendering.
+- `components`: Contains reusable React components used throughout the application.
+- `models`: Contains the MobX State Tree models for managing task data.
+
+
