@@ -42,9 +42,9 @@ const TaskItem = ({task }: any) => {
     <TaskStatusIcon status={task?.status} />
   </div>
   <div className="item-detail">
-    <p>{task?.title}</p>
-    <p>{task?.description}</p>
-    <p>{task?.status}</p>
+    <p>Title: {task?.title}</p>
+    <p>Description: {task?.description}</p>
+    <p>Status: {task?.status}</p>
   </div>
   <div className="item-control">
     <Link href={`/task/${task?.id}/view`}>

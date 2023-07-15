@@ -6,9 +6,13 @@
   .list {
     @apply flex flex-col border-2 border-solid border-blue-700 min-w-full m-0;
     height: 70vh;
+    overflow: auto;
   }
   .item {
     @apply flex justify-between items-center p-4 border-b-2 border-solid border-blue-700;
+  }
+  .item h1 {
+    @apply sticky top-0 z-40;
   }
   .item-icon {
     @apply flex justify-start items-center mx-2;
