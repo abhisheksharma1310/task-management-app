@@ -3,6 +3,8 @@
 
 The Task Management Application is a web application built with Next.js, TypeScript, MobX State Tree (MST), and Tailwind CSS. It allows users to manage their tasks by creating, viewing, updating, and deleting tasks.
 
+<a href="https://task-management-app-sigma-indol.vercel.app/" target="_blank">Click here for live demo 👆</a>
+
 ## Features
 
 - View a list of tasks.
