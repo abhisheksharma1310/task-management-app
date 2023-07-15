@@ -2,10 +2,10 @@
 
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 import "./styles.css";
-import { TaskStoreContext } from '@/models/TaskStore';
+import { TaskStoreContext } from "@/models/TaskStore";
 
 // Define the Task interface
 interface ITask {
@@ -23,7 +23,6 @@ type taskEditorProp = {
 const statusValue = ["To Do", "In Progress", "Completed"];
 
 const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
-
   const taskList = useContext(TaskStoreContext);
 
   const [task, setTask] = useState<ITask>({
@@ -33,9 +32,11 @@ const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
     id: uuidv4(),
   });
 
+  const [success, setSuccess] = useState(false);
+
   useEffect(() => {
-    if(edit && id?.length > 10){
-      const {...editTask} = taskList?.getTaskById(id);
+    if (edit && id?.length > 10) {
+      const { ...editTask } = taskList?.getTaskById(id);
       setTask(editTask);
     }
   }, [id, edit, taskList]);
@@ -48,20 +49,27 @@ const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
         [name]: value,
       };
     });
+    setSuccess(false);
   };
 
   const handleTaskSubmit = (e: any) => {
     e.preventDefault();
-    if(edit){
+    if (edit) {
       taskList?.updateTask(task);
+      setSuccess(true);
     } else {
       taskList?.addTask(task);
+      setSuccess(true);
     }
   };
 
   return (
     <>
-      <form className="task-edit-area" onSubmit={handleTaskSubmit} method="post">
+      <form
+        className="task-edit-area"
+        onSubmit={handleTaskSubmit}
+        method="post"
+      >
         <header>
           <h1>{edit ? "Edit task" : "Create new task"}</h1>
         </header>
@@ -95,16 +103,17 @@ const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
             name="status"
             id="status"
             title="Select task status"
+            value={task.status}
             onChange={handleChange}
             required
             className="bg-black border-0 outline-0"
           >
-            <option defaultValue={task.status} disabled>
+            <option value="" disabled>
               Choose task current status
             </option>
-            {statusValue.map((status, index) => {
+            {statusValue.map((status) => {
               return (
-                <option key={index} value={status}>
+                <option key={status} value={status}>
                   {status}
                 </option>
               );
@@ -121,6 +130,13 @@ const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
             {edit ? "Update the task" : "Create new task"}
           </button>
         </div>
+        {success && (
+          <h3 className="flex justify-center items-center" >
+            {edit
+              ? "Task updated successfully. Go to home."
+              : "Task created successfully. Go to home."}
+          </h3>
+        )}
       </form>
     </>
   );
