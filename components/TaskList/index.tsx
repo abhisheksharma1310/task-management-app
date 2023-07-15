@@ -28,7 +28,7 @@ const TaskList = () => {
       <div className="item">
         <h1>Task List</h1>
       </div>
-      {taskList?.tasks == undefined && <h2>No task found. Add new one.</h2>}
+      {taskList?.tasks[0]?.title == undefined && <h2 className="text-center p-4">No task found. Add new one.</h2>}
       {taskList?.tasks?.map((task) => {
         return <TaskItem key={task?.id} task={task} removeTask={removeTask}/>
       })}
@@ -39,7 +39,7 @@ const TaskList = () => {
 const TaskItem = ({task, removeTask}: any) => {
   return <div className="item hover:bg-blue-500">
   <div className="item-icon">
-    <TaskStatusIcon status="To Do" />
+    <TaskStatusIcon status={task?.status} />
   </div>
   <div className="item-detail">
     <p>{task?.title}</p>
