@@ -32,6 +32,8 @@ const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
     id: uuidv4(),
   });
 
+  const [success, setSuccess] = useState(false);
+
   useEffect(() => {
     if (edit && id?.length > 10) {
       const { ...editTask } = taskList?.getTaskById(id);
@@ -47,14 +49,17 @@ const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
         [name]: value,
       };
     });
+    setSuccess(false);
   };
 
   const handleTaskSubmit = (e: any) => {
     e.preventDefault();
     if (edit) {
       taskList?.updateTask(task);
+      setSuccess(true);
     } else {
       taskList?.addTask(task);
+      setSuccess(true);
     }
   };
 
@@ -121,6 +126,9 @@ const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
               Go to task list
             </button>
           </Link>
+          {success && 
+            <h3>{edit ? "Task updated successfully. Go to home." : "Task created successfully. Go to home."}</h3>
+          }
           <button className="task-edit-button" type="submit">
             {edit ? "Update the task" : "Create new task"}
           </button>
