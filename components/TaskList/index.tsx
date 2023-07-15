@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import {
   faEllipsisVertical,
   faEye,
@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { observer } from 'mobx-react';
 import { TaskStoreContext } from '@/models/TaskStore';
+import Dialog from "@/components/Dialog";
 
 import "./styles.css";
 import TaskStatusIcon from "../TaskStatusIcon";
@@ -19,10 +20,6 @@ const TaskList = () => {
 
   const taskList = useContext(TaskStoreContext);
 
-  const removeTask = (id: string) => {
-    taskList?.removeTask(id);
-  }
-
   return (
     <div className="list" suppressHydrationWarning={true}>
       <div className="item">
@@ -30,13 +27,16 @@ const TaskList = () => {
       </div>
       {taskList?.tasks[0]?.title == undefined && <h2 className="text-center p-4">No task found. Add new one.</h2>}
       {taskList?.tasks?.map((task) => {
-        return <TaskItem key={task?.id} task={task} removeTask={removeTask}/>
+        return <TaskItem key={task?.id} task={task} />
       })}
     </div>
   );
 };
 
-const TaskItem = ({task, removeTask}: any) => {
+const TaskItem = ({task }: any) => {
+
+  const [open, setOpen] = useState(false);
+
   return <div className="item hover:bg-blue-500">
   <div className="item-icon">
     <TaskStatusIcon status={task?.status} />
@@ -53,7 +53,10 @@ const TaskItem = ({task, removeTask}: any) => {
     <Link href={`/task/${task?.id}/edit`}>
       <FontAwesomeIcon icon={faPenToSquare} className="icon" />
     </Link>
-    <FontAwesomeIcon icon={faTrashCan} className="icon" onClick={() => removeTask(task?.id)}/>
+    <FontAwesomeIcon icon={faTrashCan} className="icon" onClick={() => setOpen(true)}/>
+    {open &&
+      <Dialog open={open} setOpen={setOpen} id={task?.id}/>
+    }
     <FontAwesomeIcon icon={faEllipsisVertical} className="icon-m"/>
   </div>
 </div>
