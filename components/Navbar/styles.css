@@ -10,4 +10,9 @@
   .heading {
     @apply text-3xl py-1 px-4;
   }
+  @media (max-width: 640px) {
+    .heading {
+      @apply text-lg py-1 px-4;
+    }
+  }
 }
