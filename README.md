@@ -1,9 +1,14 @@
 
 # Task Management Application
 
-The Task Management Application is a web application built with Next.js, TypeScript, MobX State Tree (MST), and Tailwind CSS. It allows users to manage their tasks by creating, viewing, updating, and deleting tasks.
+<p>
+   <img src="https://i.ibb.co/4mYG2Pk/task-management-nobg.png" alt="mockup-picture">
+</p>
 
-<a href="https://task-management-app-sigma-indol.vercel.app/" target="_blank">Click here for live demo 👆</a>
+<p align="center">
+<a href="https://task-management-app-sigma-indol.vercel.app/" target="_blank">Click here for live demo 👆</a></p>
+
+The Task Management Application is a web application built with Next.js, TypeScript, MobX State Tree (MST), and Tailwind CSS. It allows users to manage their tasks by creating, viewing, updating, and deleting tasks.
 
 ## Features
 
@@ -20,6 +25,14 @@ The Task Management Application is a web application built with Next.js, TypeScr
 - MobX State Tree (MST): State management solution for managing the task data.
 - Tailwind CSS: Utilized for styling and layout purposes.
 - Git: Version control system for tracking changes.
+
+### Project Structure
+
+The project follows a modular and maintainable structure, with the following main directories:
+
+- `pages`: Contains the Next.js pages for routing and rendering.
+- `components`: Contains reusable React components used throughout the application.
+- `models`: Contains the MobX State Tree models for managing task data.
 
 ## Getting Started
 
@@ -56,13 +69,5 @@ The Task Management Application is a web application built with Next.js, TypeScr
    ```
 
 2. Open your browser and visit `http://localhost:3000` to access the Task Management Application.
-
-### Project Structure
-
-The project follows a modular and maintainable structure, with the following main directories:
-
-- `pages`: Contains the Next.js pages for routing and rendering.
-- `components`: Contains reusable React components used throughout the application.
-- `models`: Contains the MobX State Tree models for managing task data.
 
 
