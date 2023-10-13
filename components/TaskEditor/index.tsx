@@ -2,6 +2,7 @@
 
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from "uuid";
 
 import "./styles.css";
@@ -24,6 +25,7 @@ const statusValue = ["To Do", "In Progress", "Completed"];
 
 const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
   const taskList = useContext(TaskStoreContext);
+  const { push } = useRouter();
 
   const [task, setTask] = useState<ITask>({
     title: "",
@@ -57,10 +59,19 @@ const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
     if (edit) {
       taskList?.updateTask(task);
       setSuccess(true);
+      goToHome();
     } else {
       taskList?.addTask(task);
       setSuccess(true);
+      goToHome();
     }
+  };
+
+  const goToHome = () => {
+    setTimeout(() => {
+      console.log("Home");
+      push("/");
+    }, 1000);
   };
 
   return (
@@ -133,8 +144,8 @@ const TaskEditor = ({ edit = false, id }: taskEditorProp) => {
         {success && (
           <h3 className="flex justify-center items-center" >
             {edit
-              ? "Task updated successfully. Go to home."
-              : "Task created successfully. Go to home."}
+              ? "Task updated successfully. Redirecting to home..."
+              : "Task created successfully. Redirecting to home..."}
           </h3>
         )}
       </form>

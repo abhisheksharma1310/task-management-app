@@ -3,26 +3,35 @@
 @tailwind utilities;
 
 @layer components {
-  .list {
+  .task-list {
     @apply flex flex-col border-2 border-solid border-blue-700 min-w-full m-0;
-    height: 70vh;
+    overflow: auto;
+  }
+  .list-items {
+    @apply flex flex-col-reverse;
+    max-height: 65vh;
     overflow: auto;
   }
   .item {
     @apply flex justify-between items-center p-4 border-b-2 border-solid border-blue-700;
-    overflow: auto;
   }
   .item-icon {
-    @apply flex justify-start items-center mx-2;
+    @apply flex justify-center items-center mx-2;
     width: 5%;
   }
   .item-detail {
     @apply flex flex-col justify-between items-start mx-2;
-    width: 75%;
+    width: 80%;
   }
   .item-control {
     @apply flex justify-evenly items-center gap-4;
-    width: 20%;
+    width: 25%;
+  }
+  .truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50vw; /* Adjust the max-width to your desired value */
   }
   .icon {
     @apply w-8 h-8 cursor-pointer;

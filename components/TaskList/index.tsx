@@ -21,16 +21,18 @@ const TaskList = () => {
   const taskList = useContext(TaskStoreContext);
 
   return (
-    <div className="list" suppressHydrationWarning={true}>
+    <div className="task-list" suppressHydrationWarning={true}>
       <div className="item">
         <h1>Task List</h1>
       </div>
       {taskList?.tasks[0]?.title == undefined && (
         <h2 className="text-center p-4">No task found. Add new one.</h2>
       )}
-      {taskList?.tasks?.map((task) => {
-        return <TaskItem key={task?.id} task={task} />;
-      })}
+      <div className="list-items">
+        {taskList?.tasks?.map((task) => {
+          return <TaskItem key={task?.id} task={task} />;
+        })}
+      </div>
     </div>
   );
 };
@@ -44,9 +46,9 @@ const TaskItem = ({ task }: any) => {
       <div className="item-icon">
         <TaskStatusIcon status={task?.status} />
       </div>
-      <div className="item-detail">
+      <div className="item-detail truncate">
         <p>Title: {task?.title}</p>
-        <p>Description: {task?.description}</p>
+        <p className="truncate">Description: {task?.description}</p>
         <p>Status: {task?.status}</p>
       </div>
       <div className="item-control">
@@ -62,8 +64,14 @@ const TaskItem = ({ task }: any) => {
           onClick={() => setOpen(true)}
         />
         {open && <DeleteDialog open={open} setOpen={setOpen} id={task?.id} />}
-        <FontAwesomeIcon icon={faEllipsisVertical} className="icon-m" onClick={() => setMenu(true)}/>
-        {menu && <TaskActionDialog  open={menu} setOpen={setMenu} id={task?.id}/> }
+        <FontAwesomeIcon
+          icon={faEllipsisVertical}
+          className="icon-m"
+          onClick={() => setMenu(true)}
+        />
+        {menu && (
+          <TaskActionDialog open={menu} setOpen={setMenu} id={task?.id} />
+        )}
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ The Task Management Application is a web application built with Next.js, TypeScr
 - View individual task details.
 - Add a new task.
 - Edit an existing task.
+- Mark task as ToDo, In Progress and Completed.
 - Delete a task.
 
 ## Technology Stack
