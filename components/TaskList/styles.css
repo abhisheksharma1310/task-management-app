@@ -15,6 +15,9 @@
   .item {
     @apply flex justify-between items-center p-4 border-b-2 border-solid border-blue-700;
   }
+  .filetr-by {
+    @apply flex justify-end;
+  }
   .item-icon {
     @apply flex justify-center items-center mx-2;
     width: 5%;

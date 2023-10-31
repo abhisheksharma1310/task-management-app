@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import {
   faEllipsisVertical,
   faEye,
@@ -17,19 +17,45 @@ import TaskActionDialog from "@/components/Dialog/TaskActioDialog";
 import "./styles.css";
 import TaskStatusIcon from "../TaskStatusIcon";
 
+const statusValue = ["To Do", "In Progress", "Completed"];
+
 const TaskList = () => {
   const taskList = useContext(TaskStoreContext);
+
+  const [filterBy, setFilterBy] = useState("auto");
+
+  const filterTasks = useMemo(() => {
+    if (filterBy === "auto") return taskList?.tasks;
+    const tasks = taskList?.tasks?.filter((task) => task?.status === filterBy);
+    return tasks;
+  }, [filterBy, taskList]);
 
   return (
     <div className="task-list" suppressHydrationWarning={true}>
       <div className="item">
         <h1>Task List</h1>
+        <div className="filetr-by">
+          <label>Filter By</label>
+          <select
+            className="bg-black"
+            defaultValue="Auto"
+            onChange={(e) => setFilterBy(e.target?.value)}
+            title="Filter tasks by its status"
+          >
+            <option value="auto">Auto</option>
+            {statusValue.map((value, ind) => (
+              <option key={ind} value={value}>
+                {value}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       {taskList?.tasks[0]?.title == undefined && (
         <h2 className="text-center p-4">No task found. Add new one.</h2>
       )}
       <div className="list-items">
-        {taskList?.tasks?.map((task) => {
+        {filterTasks?.map((task) => {
           return <TaskItem key={task?.id} task={task} />;
         })}
       </div>
