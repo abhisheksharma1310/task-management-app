@@ -13,6 +13,7 @@ The Task Management Application is a web application built with Next.js, TypeScr
 ## Features
 
 - View a list of tasks.
+- Filter tasks by its status.
 - View individual task details.
 - Add a new task.
 - Edit an existing task.
